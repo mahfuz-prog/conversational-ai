@@ -47,8 +47,7 @@ def login_required(f):
 def logout_required(f):
 	@wraps(f)
 	def inner(*args, **kwargs):
-		token = request.headers['x-access-token']
-		if token and len(token) <= 32:
+		if 'x-access-token' in request.headers:
 			abort(403)
 		return f(*args, **kwargs)
 	return inner
