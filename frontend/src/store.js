@@ -3,8 +3,8 @@
 import axios from 'axios' 
 import { reactive, readonly } from 'vue'
 
-// import conf from '/etc/stringtoyouconfig.json'
-import conf from "C:/Users/User/Desktop/task/config.json"
+import conf from '/etc/chatbot.json'
+// import conf from "C:/Users/User/Desktop/task/config.json"
 
 // get jwt from localStorage
 const state = reactive({
