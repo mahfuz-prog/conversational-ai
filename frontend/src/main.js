@@ -6,12 +6,13 @@ import store from "./store"
 import router from './router'
 import Notifications from '@kyvg/vue3-notification'
 
-// import conf from '/etc/config.json'
-import conf from "C:/Users/User/Desktop/task/config.json"
+import conf from '/etc/chatbot.json'
+// import conf from "C:/Users/User/Desktop/task/config.json"
 
 import { createApp } from 'vue'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/api/'
+axios.defaults.baseURL = 'https://webwaymark.com/api/'
 axios.defaults.headers.common['x-access-token'] = `${conf.AUTHORIZATION_PREFIX} ${store.state.token}`
 
 async function checkToken() {

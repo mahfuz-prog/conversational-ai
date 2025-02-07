@@ -1,5 +1,5 @@
 > Conversational ai - Gemini
-- [Ai modle - gemini-2.0-flash](https://ai.google.dev/gemini-api/docs/quickstart?lang=python)
+- [Ai model - gemini-2.0-flash](https://ai.google.dev/gemini-api/docs/quickstart?lang=python)
 - In conversational AI, the model is responsible for understanding natural language and generating relevant responses.
 - Provides the AI with the context of the ongoing conversation.
 - Limits the length of the response to 500 tokens
