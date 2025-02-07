@@ -20,6 +20,15 @@ def get_current_weather(location: str) -> str:
 	return response
 
 
+# public chat route
+@chats.route('/', methods=['POST'])
+def home():
+	if request.method == 'POST':
+		response = request.get_json()
+	return ''
+
+
+# loggeding user chat route
 @chats.route('/chat/', methods=['POST'])
 @login_required
 def chat(current_user):

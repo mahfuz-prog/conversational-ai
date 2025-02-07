@@ -8,8 +8,8 @@ from functools import wraps
 from flaskapp.db_models import User
 from flask import request, abort, current_app
 
-with open('/etc/chatbot.json', 'r') as config_file:
-# with open("C:/Users/User/Desktop/task/config.json", 'r') as config_file:
+# with open('/etc/chatbot.json', 'r') as config_file:
+with open("C:/Users/User/Desktop/task/config.json", 'r') as config_file:
 	config = json.load(config_file)
 
 # handle login

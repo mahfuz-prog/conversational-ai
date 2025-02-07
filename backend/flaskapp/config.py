@@ -1,7 +1,7 @@
 import json
 
-with open('/etc/chatbot.json', 'r') as config_file:
-# with open("C:/Users/User/Desktop/task/config.json", 'r') as config_file:
+# with open('/etc/chatbot.json', 'r') as config_file:
+with open("C:/Users/User/Desktop/task/config.json", 'r') as config_file:
 	conf = json.load(config_file)
 
 class Config():
