@@ -14,7 +14,6 @@ const notification = useNotification()
 const history = ref()
 const messageInput = ref('')
 const isWaiting = ref(false)
-const chatHistory = ref([])
 
 // handle 401 and 403 error
 const handleError = (err) => {
@@ -108,7 +107,7 @@ watch(
 </script>
 <template>
   <Hisory />
-  <div class="container">
+  <div class="chatbox-container">
     <!-- show the chat -->
     <div class="chat-messages">
       <template v-for="(msg, index) in history" :key="index">
@@ -139,7 +138,7 @@ watch(
 </template>
 
 <style scoped>
-.container {
+.chatbox-container {
   width: 700px;
   height: auto;
   max-height: 80%;
@@ -225,7 +224,6 @@ watch(
 .input-box {
   display: flex;
   padding: 10px;
-  margin-top: 10px;
   background-color: var(--secondary-black);
   border-radius: 5px;
 }
@@ -271,7 +269,7 @@ watch(
 }
 
 @media (max-width: 430px) {
-  .container {
+  .chatbox-container {
     width: 100%;
     max-height: 100%;
     padding: 15px 10px;

@@ -10,7 +10,7 @@ from flask import request, Blueprint, jsonify, abort, current_app
 chats = Blueprint('chats', __name__, url_prefix='/api')
 CORS(chats)
 
-sys_instruct = "You are a cat. Your name is Neko."
+sys_instruct = "Your name is Neko. You have been implemented in a Chatbot Application"
 
 # API cal for get current weather data
 def get_current_weather(location: str) -> str:
@@ -20,12 +20,43 @@ def get_current_weather(location: str) -> str:
 	return response
 
 
+# return model reply
+def generate_model_response(history):
+	# pass the history with current question, sys_instruct, and external api call functionality
+	model = client.models.generate_content(
+		model="gemini-2.0-flash",
+		contents=history,
+		config=types.GenerateContentConfig(
+			max_output_tokens=500,
+			temperature=0.3,
+			system_instruction=sys_instruct,
+			tools=[get_current_weather]
+		)
+	)
+
+	return model.text
+
+
 # public chat route
 @chats.route('/', methods=['POST'])
 def home():
+	data = ''
 	if request.method == 'POST':
 		response = request.get_json()
-	return ''
+		if 'history' not in response:
+			# bad request
+			abort(400)
+
+		temp_history = response['history']
+		history = []
+		for i in temp_history:
+			history.append({"role": i['role'], "parts":[{"text": i['text']}]})
+
+		bot_reply = generate_model_response(history)
+		if bot_reply:
+			data = bot_reply
+
+	return jsonify(data)
 
 
 # loggeding user chat route
@@ -62,21 +93,9 @@ def chat(current_user):
 		for i in messages_db:
 			history.append({"role": i.role, "parts":[{"text": i.text}]})
 
-		# pass the history with current question, sys_instruct, and external api call functionality
-		model = client.models.generate_content(
-			model="gemini-2.0-flash",
-			contents=history,
-			config=types.GenerateContentConfig(
-				max_output_tokens=500,
-				temperature=0.3,
-				system_instruction=sys_instruct,
-				tools=[get_current_weather]
-			)
-		)
-
 
 		# save bot reply to database
-		bot_reply = model.text
+		bot_reply = generate_model_response(history)
 		if bot_reply:
 			message = Message(role='model', text=bot_reply, conversation_id=conversation_id)
 			db.session.add(message)
