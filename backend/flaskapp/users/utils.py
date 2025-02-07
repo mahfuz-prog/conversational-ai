@@ -1,4 +1,4 @@
-# import jwt
+import jwt
 import json
 import hmac
 import random
@@ -16,7 +16,13 @@ with open('/etc/chatbot.json', 'r') as config_file:
 def login_required(f):
 	@wraps(f)
 	def inner(*args, **kwargs):
-		token = request.headers['x-access-token']
+		token = None
+		if 'x-access-token' in request.headers:
+			token = request.headers['x-access-token']
+		else:
+			# bad request x-access-token not exist
+			abort(400)
+
 
 		if not token:
 			abort(403)

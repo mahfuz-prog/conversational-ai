@@ -10,7 +10,8 @@ from flask import request, Blueprint, jsonify, abort, current_app
 chats = Blueprint('chats', __name__, url_prefix='/api')
 CORS(chats)
 
-sys_instruct = "Your name is Neko. You have been implemented in a Chatbot Application"
+sys_instruct = '''Your name is Neko. You have been implemented in a Chatbot Application.
+	Analyze the sentiment of the user's input and answer accordingly'''
 
 # API cal for get current weather data
 def get_current_weather(location: str) -> str:
