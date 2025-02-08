@@ -2,19 +2,11 @@
 import Header from '../components/templates/Header.vue'
 import Footer from '../components/templates/Footer.vue'
 import Content from '../components/chatpage/Content.vue'
-import ContentSkeleton from '../components/chatpage/ContentSkeleton.vue'
 </script>
 <template>
   <Header />
   <main>
-    <Suspense>
-      <template #default>
-        <Content/>
-      </template>
-      <template #fallback>
-        <ContentSkeleton />
-      </template>
-    </Suspense>
+    <Content/>
   </main>
   <Footer />
 </template>
