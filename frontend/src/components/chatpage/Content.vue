@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import Hisory from './History.vue'
+import History from './History.vue'
 import { useRouter } from 'vue-router'
 import UserIcon from '../icons/UserIcon.vue'
 import { ref, inject, nextTick, watch } from 'vue'
@@ -106,7 +106,7 @@ watch(
 )
 </script>
 <template>
-  <Hisory />
+  <History />
   <div class="chatbox-container">
     <!-- show the chat -->
     <div class="chat-messages">
