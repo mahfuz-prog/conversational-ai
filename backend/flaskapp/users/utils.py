@@ -28,10 +28,13 @@ def login_required(f):
 			abort(403)
 
 		# read authorization prefix
-		pre, token_ = token.split(' ')
-		if pre == config.get('AUTHORIZATION_PREFIX'):
-			token = token_
-		else:
+		try:
+			pre, token_ = token.split(' ')
+			if pre == config.get('AUTHORIZATION_PREFIX'):
+				token = token_
+			else:
+				abort(403)
+		except:
 			abort(403)
 
 		try:
