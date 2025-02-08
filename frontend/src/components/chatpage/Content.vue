@@ -4,8 +4,8 @@ import History from './History.vue'
 import { useRouter } from 'vue-router'
 import UserIcon from '../icons/UserIcon.vue'
 import { ref, inject, nextTick, watch } from 'vue'
+import HistorySkeleton from './HistorySkeleton.vue'
 import { useNotification } from "@kyvg/vue3-notification"
-
 
 const router = useRouter()
 const store = inject("store")
@@ -106,7 +106,15 @@ watch(
 )
 </script>
 <template>
-  <History />
+  <!-- skeleton loading -->
+  <Suspense>
+    <template #default>
+      <History />
+    </template>
+    <template #fallback>
+      <HistorySkeleton />
+    </template>
+  </Suspense>
   <div class="chatbox-container">
     <!-- show the chat -->
     <div class="chat-messages">
