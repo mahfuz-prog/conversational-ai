@@ -162,5 +162,4 @@ def single_conversation(current_user, id):
 		for message in messages:
 			data.append({'role': message.role, 'text': message.text})
 
-
 	return jsonify(data)
